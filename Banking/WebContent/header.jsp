@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <style>
 .top-navbar {
@@ -20,10 +19,6 @@
 @media only screen and (max-width: 995px) {
   .top-navbar .navbar-nav .nav-link {
   font-size: 75%;
-  }
-  
-  .first {
-  font-size: 80%;
   }
   
 }
@@ -57,7 +52,7 @@
 						  <div class="dropdown-menu">
 						     <a class="dropdown-item" href="CreateCustomer.jsp">Create Customer</a>
 						     <a class="dropdown-item" href="ReadCustomer.jsp">Read Customer</a>
-						     <a class="dropdown-item" href="UpdateCustomer.jsp">Update Customer</a>
+						     <a class="dropdown-item" href="CustomerSearch.jsp">Update Customer</a>
 						     <a class="dropdown-item" href="DeleteCustomer.jsp">Delete Customer</a>
 					      </div>
 			      </li>

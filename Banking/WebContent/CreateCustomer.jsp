@@ -22,6 +22,11 @@
   .top-navbar .navbar-nav .nav-link {
   font-size: 75%;
   }
+ 
+  h3 {
+  	font-size: 80%;
+  }
+  
   
   .first {
   font-size: 80%;

@@ -13,4 +13,16 @@ public class CustomerService {
 		return status;
 	}
 
+	public CustomerBean findCustomerByCustomerId(String cus_id)
+	{
+		CustomerBean cb = custDao.findCustomerByCustomerId(cus_id);
+		return cb;
+	}
+	
+	public String findCustomerBySsnId(String ssn_id)
+	{
+		String cust_id = custDao.findCustomerBySsnId(ssn_id);
+		return cust_id;
+	}
+	
 }
