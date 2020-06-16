@@ -14,7 +14,7 @@
             <h4>Delect Account</h4>
         </div>
             <div class="inner_table">
-                <form>
+                <form action="delete" method="post">
                 <table>
                     <tr>
                         <td class="label">Account Id</td>
@@ -31,13 +31,12 @@
                         <td></td>
                     
                         <td class="button">
-                            <a href="delect.jsp?a_id=account_id,a_type=account_type"></a>
-                            <button class="btn" type="button">Delect Account</button>
+                            
+                            <input class="btn" type="Submit" value="Delete">
                         </td>
                     </tr>
                 </table>
-                </form>   
-            </div>
+                </form>   </div>
         </div>
 <%@ include file = "footer.jsp" %>
 </body>
