@@ -40,7 +40,7 @@ li.nav-item
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
+<script src="js/validate.js"></script>
     </head>
     <body>
                 
@@ -52,48 +52,31 @@ li.nav-item
 		    <div class="col-3"></div>
 		    <div class="col-6">
 		    <center><h3 style="margin-top: -20px">Customer Search</h3></center><br>
-	            <form  action="control"method="post" >
-                <table>
-                    <tr>
-                        <td>Enter SSN ID/ Customer ID</td>
-                        <td><input type="text" name="ssn_id" pattern="[0-9]{1,9}" placeholder="100******"></td>
-                    </tr>
-                    <tr align="center">
-                        <td colspan="2" class="btn"><input type="submit" value="View" class="btn1"></td>
-                    </tr>
-                </table>
-            </form>
-             <table>
-                <%
-                   ArrayList<customer> cl=new ArrayList<customer>();
-                   cl=(ArrayList<customer>)request.getAttribute("customerlist");
-                   if(cl!=null&&cl.size()>0)
-                   {
-                   for(int i=0; i<cl.size(); i++) 
-                   {
-                    customer c=new customer();
-                    c=cl.get(i);
-                    
-                %>
-                <tr align="center">
-                    <td>Customer_Id: <%out.println(c.getCustomer_id());%><br><td>
-                </tr>
-                
-                <tr align="center">
-                    <td>Account_Id: <%out.println(c.getAccountId());%><br></td>
-                </tr>
-                <tr align="center">
-                    <td>Account_Type: <%out.println(c.getAccountType()); %><br></td>
-                </tr>
-                <tr align="center">
-                    <td>Balance: <% out.println( c.getBalance());%><br></td>
-                </tr>
-                <%}
-                   }
-                    %>
-            </table>
-        </div>
-
+		    	<form action="SearchCustomerServlet" method="POST">
+			    	<table class="table table-borderless">
+					    <tr>
+					      <th scope="col" class="first">Enter SSN Id: <span style="color:red">*</span></th>
+					      <th scope="col"><input style="width: 100%" type="text" id="fname"pattern="[0-9]{1,9}" placeholder="100******" name="ssn_id" required></th>
+					    </tr>
+					    <tr>
+					    	<th colspan="2">OR</th>
+					    </tr>
+					    <tr>
+					      <th scope="col" class="first">Enter Customer_Id<span style="color:red">*</span></th>
+					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="customer_id" pattern="[0-9]{1,9}" placeholder="100******" required></th>
+					    </tr>
+					    <tr>
+					      <th scope="col" class="first"><button type="submit" name="update" style="width: 100%" class="btn custom-button">Update</button></th>
+					      <th scope="col"><button type="submit" style="width: 82%" name="delete" class="btn custom-button">Delete</button></th>
+					    </tr> 
+					</table>
+				</form>
+		    </div>
+	    	<div class="col-3"></div>
+	  	</div>
+  	  </div>
+  </div>
+        
   <%@ include file = "footer.jsp" %>
     </body>
 </html>
