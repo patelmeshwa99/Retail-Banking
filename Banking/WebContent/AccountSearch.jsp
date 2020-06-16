@@ -170,7 +170,7 @@ li.nav-item
             <div class="heading">
                 <h4>Account Search</h4>
             </div>
-            <form method="search" target="GET" name="form1">
+                       <form method="post" action="control1" name="form1">
                 <table>
                     <tr>
                         <td>Enter Account ID</td>
@@ -182,14 +182,52 @@ li.nav-item
                     <tr>
                         <td>Enter Customer_Id</td>
                         <td><input type="text" name="customer_id" placeholder="100******"></td>
+                        <td><label for="cars">Choose an account_Type:</label>
+
+                        <select id="type" name="account">
+                            <option value="saving">Saving</option>
+                            <option value="current">Current</option>
+                               
+                        </select>
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2" class="btn"><input type="submit" value="View" class="btn1"></td>
                     </tr>
                 </table>
             </form>
+             <table>
+                               <%
+                     ArrayList<customer> cl=new ArrayList<customer>();
+                    cl=(ArrayList<customer>)request.getAttribute("customerlist");
+                     if(cl!=null&&cl.size()>0)
+                     {
+                     for(int i=0; i<cl.size(); i++) 
+                     {
+                        customer c=new customer();
+                         c=cl.get(i);
+                    
+                %>
+                <tr align="center">
+                    <td>Customer_Id: <%out.println(c.getCustomer_id());%><br><td>
+                </tr>
+                
+                <tr align="center">
+                    <td>Account_Id: <%out.println(c.getAccountId());%><br></td>
+                </tr>
+                <tr align="center">
+                    <td>Account_Type: <%out.println(c.getAccountType()); %><br></td>
+                </tr>
+                <tr align="center">
+                    <td>Balance: <% out.println( c.getBalance());%><br></td>
+                </tr>
+                <%}
+                   }
+                    %>
+</table>
         </div>
         </div>
+
         <div class="container-fluid" style="height:7px; background-color: #F7E100"></div>
 
 <div class="container-fluid" style="background-color: black">
