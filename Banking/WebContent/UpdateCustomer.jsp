@@ -55,7 +55,7 @@
 		    <div class="col-3"></div>
 		    <div class="col-6">
 		    <center><h3 style="margin-top: -20px">Update Customer</h3></center><br>
-		    	<form action="CreateCustomer" method="POST">
+		    	<form action="UpdateCustomerServlet" method="POST">
 			    	<table class="table table-borderless">
 					    <tr>
 					      <th scope="col" class="first">Customer SSN Id</th>
@@ -63,11 +63,11 @@
 					    </tr>
 					    <tr>
 					      <th scope="col" class="first">Customer Id</th>
-					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="name" value="<%=request.getAttribute("cId")%>" disabled></th>
+					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="customerId" value="<%=request.getAttribute("cId")%>" disabled></th>
 					    </tr>
 					    <tr>
 					      <th scope="col" class="first">Old Customer Name</th>
-					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="age" value="<%=request.getAttribute("name")%>" disabled></th>
+					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="old_name" value="<%=request.getAttribute("name")%>" disabled></th>
 					    </tr>
 					    <tr>
 					      <th scope="col" class="first">New Customer Name <span style="color:red">*</span></th>
@@ -76,22 +76,22 @@
 					    <tr>
 					    <tr>
 					      <th scope="col" class="first">Old Address<span style="color:red">*</span></th>
-					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="new_name" value="<%=request.getAttribute("address")%>" disabled></th>
+					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="old_address" value="<%=request.getAttribute("address")%>" disabled></th>
 					    </tr>
 					    <tr>
 					    <tr>
 					      <th scope="col" class="first">New Address <span style="color:red">*</span></th>
-					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="new_name" required></th>
+					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="new_address" required></th>
 					    </tr>
 					    <tr>
 					    <tr>
 					      <th scope="col" class="first">Old Age<span style="color:red">*</span></th>
-					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="new_name" value="<%=request.getAttribute("age")%>" disabled></th>
+					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="old_age" value="<%=request.getAttribute("age")%>" disabled></th>
 					    </tr>
 					    <tr>
 					    <tr>
 					      <th scope="col" class="first">New Age<span style="color:red">*</span></th>
-					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="new_name" required></th>
+					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="new_age" required></th>
 					    </tr>
 					    <tr>
 					    	<th colspan="2"><span style="color: red">(*)Fields are mandatory</span></th></tr>

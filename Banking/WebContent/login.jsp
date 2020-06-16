@@ -6,7 +6,28 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="js/validate.js"></script>
+<script>
+function validate() {
+	
+	const uname = document.getElementById("uname").value;
+	const password= document.getElementById("pwd").value;
+	const form = document.getElementById("form");
+	
+	var expr = /^[a-zA-Z0-9]{8,}$/;
+	var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10}$/;
+	
+	if(!(uname.match(expr))){
+		alert('Invalid username!!');
+		
+	}else if(!(password.match(passw))){
+		alert('Invalid password!!');
+	}else{
+		form.action="LoginServlet";
+	}
+	
+}
+
+</script>
 </head>
 <body>
 <div class="container" style="margin-top: 10%">

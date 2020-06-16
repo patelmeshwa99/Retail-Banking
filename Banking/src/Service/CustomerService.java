@@ -21,8 +21,12 @@ public class CustomerService {
 	
 	public String findCustomerBySsnId(String ssn_id)
 	{
-		String cust_id = custDao.findCustomerBySsnId(ssn_id);
-		return cust_id;
+		String cId = custDao.findCustomerBySsnId(ssn_id);
+		return cId;
+	}
+	
+	public int updateCustomer(CustomerBean cust, String cust_id) {
+		return custDao.updateCustomer(cust, cust_id);
 	}
 	
 }

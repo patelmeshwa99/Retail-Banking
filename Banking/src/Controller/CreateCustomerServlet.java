@@ -32,6 +32,8 @@ public class CreateCustomerServlet extends HttpServlet {
 		
 		String errorMsg = "";
 		
+		PrintWriter out = response.getWriter();
+		
 		if(id == null || id.equals("")) {
 			errorMsg = "Customer SSM Id can't be null!";
 		}
@@ -55,52 +57,69 @@ public class CreateCustomerServlet extends HttpServlet {
 			response.sendRedirect("CreateCustomer.jsp");
 			System.out.println(errorMsg);
 		}
-		else {
 		
-			CustomerBean cust = new CustomerBean();
-			cust.setSsn_id(id);
-			cust.setName(name);
-			cust.setAge(Integer.parseInt(age));
-			cust.setAddress(address);
-			cust.setState(state);
-			cust.setCity(city);
+		else {
 			
 			CustomerService cs = new CustomerService();
+			if(cs.findCustomerBySsnId(id)==null) {
+				CustomerBean cust = new CustomerBean();
+				cust.setSsn_id(id);
+				cust.setName(name);
+				cust.setAge(Integer.parseInt(age));
+				cust.setAddress(address);
+				cust.setState(state);
+				cust.setCity(city);	
+				
+				int agee = Integer.parseInt(age);
+				
 			
-			int agee = Integer.parseInt(age);
-			PrintWriter out = response.getWriter();
-			if(cs.insertCustomer(cust)) {
+		
+				if(cs.insertCustomer(cust)) {
 				
-				out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
-				out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-				out.println("<script>");
-				out.println("$(document).ready(function(){");
-				out.println("swal ( 'Status', 'Customer creation initialized successfully!!', 'success');");
-				out.println("});");
-				out.println("</script>");
-				
-				
-				RequestDispatcher rd = request.getRequestDispatcher("CreateCustomer.jsp");
-				rd.include(request, response);
+					out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+					out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+					out.println("<script>");
+					out.println("$(document).ready(function(){");
+					out.println("swal ( 'Status', 'Customer creation initialized successfully!!', 'success');");
+					out.println("});");
+					out.println("</script>");
+					
+					
+					RequestDispatcher rd = request.getRequestDispatcher("CreateCustomer.jsp");
+					rd.include(request, response);
 
-			}
-			else
-			{
-				out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
-				out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-				out.println("<script>");
-				out.println("$(document).ready(function(){");
-				out.println("swal ( 'Status', 'Customer creation failed!!', 'error');");
-				out.println("});");
-				out.println("</script>");
-				
-				RequestDispatcher rd = request.getRequestDispatcher("CreateCustomer.jsp");
-				rd.include(request, response);
-
-
-			}
+				}
+				else
+				{
+					out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+					out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+					out.println("<script>");
+					out.println("$(document).ready(function(){");
+					out.println("swal ( 'Status', 'Customer creation failed!!', 'error');");
+					out.println("});");
+					out.println("</script>");
+					
+					RequestDispatcher rd = request.getRequestDispatcher("CreateCustomer.jsp");
+					rd.include(request, response);
+	
+	
+				}
 		}
+			else {
+				out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+				out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+				out.println("<script>");
+				out.println("$(document).ready(function(){");
+				out.println("swal ( 'Status', 'Customer with given SSN ID exists!!', 'error');");
+				out.println("});");
+				out.println("</script>");
+				
+				RequestDispatcher rd = request.getRequestDispatcher("CreateCustomer.jsp");
+				rd.include(request, response);
+
+			}
 		
 	}
 
+}
 }

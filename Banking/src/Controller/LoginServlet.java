@@ -20,6 +20,7 @@ public class LoginServlet extends HttpServlet {
 		LoginDao dao = new LoginDao();
 		
 		if(dao.check(uname, pass)) {
+			dao.updateTimestamp(uname,pass);
 			HttpSession session = request.getSession();
 			session.setAttribute("username", request.getParameter("uname"));
 			response.sendRedirect("Home.jsp");

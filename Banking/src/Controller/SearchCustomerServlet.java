@@ -65,7 +65,10 @@ public class SearchCustomerServlet extends HttpServlet {
 					if((cust_id == null || cust_id.equals(""))){
 						CustomerService cs = new CustomerService();
 						String cId = cs.findCustomerBySsnId(id);
-						if(!(cId==null || cId.equals(""))) {
+						
+						CustomerBean cb = cs.findCustomerByCustomerId(cId);
+						
+						if(!(cb==null)) {
 							out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
 							out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
 							out.println("<script>");
@@ -74,7 +77,10 @@ public class SearchCustomerServlet extends HttpServlet {
 							out.println("});");
 							out.println("</script>");
 					
-							request.setAttribute("cId", cId);
+							request.setAttribute("ssn", cb.getSsn_id());
+							request.setAttribute("name", cb.getName());
+							request.setAttribute("address", cb.getAddress());
+							request.setAttribute("age", cb.getAge());
 							
 							RequestDispatcher rd = request.getRequestDispatcher("UpdateCustomer.jsp");
 							rd.include(request, response);

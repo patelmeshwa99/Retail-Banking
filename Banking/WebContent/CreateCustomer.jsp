@@ -44,6 +44,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="js/validate.js"></script>
+<script>
+function check_ssn() {
+	const ssnId = document.getElementById("ssn").value;
+	if(ssnId.length==9){
+		document.getElementById("myForm").action = "CreateCustomer";
+		return true;
+	}
+		alert("SSN should be 9 characters long!!");
+		reset();
+		
+}
+
+	function reset(){
+	  document.getElementById("myForm").reset();
+	}
+
+
+</script>
 </head>
 <body>
 <%
@@ -62,11 +81,11 @@
 	    <div class="col-3"></div>
 	    <div class="col-6">
 	    <center><h3 style="margin-top: -20px">Create Customer Screen</h3></center><br>
-	    	<form action="CreateCustomer" method="POST">
+	    	<form id="myForm" action="" method="POST" onsubmit="check_ssn()">
 		    	<table class="table table-borderless">
 				    <tr>
 				      <th scope="col" class="first">Customer SSM Id: <span style="color:red">*</span></th>
-				      <th scope="col"><input style="width: 100%" type="text" id="fname" name="ssnId" required></th>
+				      <th scope="col"><input style="width: 100%" type="text" id="ssn" name="ssnId" required></th>
 				    </tr>
 				    <tr>
 				      <th scope="col" class="first">Customer Name: <span style="color:red">*</span></th>
@@ -105,7 +124,7 @@
 				    <tr><th colspan="2"><span style="color: red">(*)Fields are mandatory</span></th></tr>
 				    <tr>
 				      <th scope="col" class="first"><button type="submit" style="width: 100%" class="btn custom-button">Submit</button></th>
-				      <th scope="col"><button type="submit" style="width: 82%" class="btn custom-button">Reset</button></th>
+				      <th scope="col"><button type="button" style="width: 82%" onclick="reset()" class="btn custom-button">Reset</button></th>
 				    </tr> 
 				</table>
 			</form>
