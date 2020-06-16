@@ -130,6 +130,11 @@ li.nav-item
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script>
+function refreshPage(){
+    window.location.reload();
+} 
+</script>
 
     </head>
     
@@ -177,7 +182,9 @@ li.nav-item
                             <c:out value = "${row.last_update}"/>
                         </td>
                         <td>
-                            <a href="#">Refresh</a>
+                                <button class="btn-link" onClick="refreshPage()" type="reset" value="Refresh The List">
+                                    <a href="#">Refresh</a>
+            </button>
                         </td>
                     </tr>
                       </c:forEach>
@@ -185,7 +192,7 @@ li.nav-item
                     
             </div>
             <div class="btn1">
-            <button class="btn" type="reset" value="Refresh The List">
+            <button class="btn" onClick="refreshPage()" type="reset" value="Refresh The List">
                 Refresh the list
             </button>
             </div>
