@@ -48,7 +48,7 @@
         </div>
           <center><input type="submit" value="Transfer" style="background-color: black;color:#F7E100; width: 150px;"></center></b>
     </form>
-    <div class="container-fluid" style="height:7px; background-color: #F7E100"></div>
+    <br><br>
 <%@ include file="footer.jsp" %>
 </body>
 </html>
