@@ -19,7 +19,7 @@ public class CreateCustomerDao {
 	public boolean insertCustomer(CustomerBean cust)
 	{
 		boolean status = false;
-		String sql = "insert into customerstatus(ssn, name, Age, Address, State, City, cust_id) values (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into customerstatus(ssn, name, Age, Address, State, City, cust_id, status, message, last) values (?, ?, ?, ?, ?, ?, ?, ?, ?, current_timestamp)";
 		
 		try {
 			Connection con = cm.getConnection();
@@ -31,6 +31,8 @@ public class CreateCustomerDao {
 			st.setString(5, cust.getState());
 			st.setString(6, cust.getCity());
 			st.setString(7, Integer.toString(cust_id));
+			st.setString(8, "Active");
+			st.setString(9, "created successfully");
 			status = st.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,8 +50,7 @@ public class CreateCustomerDao {
 		CustomerBean cust = new CustomerBean();
 		try {
 			Connection con = cm.getConnection();
-			PreparedStatement st = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, 
-					  ResultSet.CONCUR_READ_ONLY);
+			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, cus_id);
 			 result = st.executeQuery();
 			 
@@ -95,7 +96,7 @@ public class CreateCustomerDao {
 	public int updateCustomer(CustomerBean cust, String cust_id) {
 		int rows_affected;
 		
-		String sql = "update customerstatus set name=?, age=?, address=? where cust_id=cust_id";
+		String sql = "update customerstatus set name=?, age=?, address=?, message=?, last=current_timestamp where cust_id=?";
 
 		try {
 			Connection con = cm.getConnection();
@@ -103,6 +104,24 @@ public class CreateCustomerDao {
 			st.setString(1, cust.getName());
 			st.setString(3, cust.getAddress());
 			st.setInt(2, cust.getAge());
+			st.setString(4, "update complete");
+			st.setString(5, cust_id);
+			rows_affected = st.executeUpdate();
+			return rows_affected;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public int deleteCustomer(String ssnId) {
+		int rows_affected;
+		String sql = "delete from customerstatus where ssn=?";
+		
+		try {
+			Connection con = cm.getConnection();
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, ssnId);
 			rows_affected = st.executeUpdate();
 			return rows_affected;
 		} catch (Exception e) {

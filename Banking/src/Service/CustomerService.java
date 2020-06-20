@@ -29,4 +29,8 @@ public class CustomerService {
 		return custDao.updateCustomer(cust, cust_id);
 	}
 	
+	public int deleteCustomer(String ssn_id) {
+		return custDao.deleteCustomer(ssn_id);
+	}
+	
 }

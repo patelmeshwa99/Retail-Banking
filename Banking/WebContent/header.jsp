@@ -51,33 +51,29 @@
 				      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Customer Management</a>
 						  <div class="dropdown-menu">
 						     <a class="dropdown-item" href="CreateCustomer.jsp">Create Customer</a>
-						     <a class="dropdown-item" href="ReadCustomer.jsp">Read Customer</a>
 						     <a class="dropdown-item" href="CustomerSearch.jsp">Update Customer</a>
-						     <a class="dropdown-item" href="DeleteCustomer.jsp">Delete Customer</a>
+						     <a class="dropdown-item" href="CustomerSearch.jsp">Delete Customer</a>
 					      </div>
 			      </li>
 			      <li class="nav-item dropdown">
 				      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Account Management</a>
 						  <div class="dropdown-menu">
-						      <a class="dropdown-item" href="#">Link 1</a>
-						      <a class="dropdown-item" href="#">Link 2</a>
-						      <a class="dropdown-item" href="#">Link 3</a>
+						      <a class="dropdown-item" href="CreateAccount.jsp">Create Account</a>
+						      <a class="dropdown-item" href="AccountSearch.jsp">Delete Account</a>
 						  </div>
 				  </li>
 				  <li class="nav-item dropdown">
 					  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Status Details</a>
 						  <div class="dropdown-menu">
-						      <a class="dropdown-item" href="#">Link 1</a>
-						      <a class="dropdown-item" href="#">Link 2</a>
-						      <a class="dropdown-item" href="#">Link 3</a>
+						      <a class="dropdown-item" href="CustomerStatus.jsp">Customer Status</a>
+						      <a class="dropdown-item" href="AccountStatus.jsp">Account Status</a>
 						  </div>
 				  </li>
 			      <li class="nav-item dropdown">
 					  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Account Operations</a>
 						   <div class="dropdown-menu">
-						      <a class="dropdown-item" href="#">Link 1</a>
-						      <a class="dropdown-item" href="#">Link 2</a>
-						      <a class="dropdown-item" href="#">Link 3</a>
+						      <a class="dropdown-item" href="AccountSearch.jsp">Deposit</a>
+						      <a class="dropdown-item" href="AccountSearch.jsp">Withdraw</a>
 						   </div>
 				  </li>
 				  <li class="nav-item">

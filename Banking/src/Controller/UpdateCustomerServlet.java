@@ -18,7 +18,7 @@ public class UpdateCustomerServlet extends HttpServlet {
 	
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-			String cust_id = request.getParameter("customerId"); 
+			String cust_id = request.getParameter("customerId");
 			int rows_affected;
 		
 			CustomerService cs = new CustomerService();

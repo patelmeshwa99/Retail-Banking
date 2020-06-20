@@ -73,7 +73,6 @@ function check_ssn() {
 	}
 %>
 
-<%response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); %>
 <%@ include file = "header.jsp" %>
 <div class="jumbotron jumbotron-fluid">
   <div class="container">

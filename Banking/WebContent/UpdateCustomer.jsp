@@ -46,7 +46,14 @@
 
 </head>
 <body>
+	<%
 
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	if(session.getAttribute("username")==null){
+		response.sendRedirect("login.jsp");
+	}
+%>
+	
 	<%@ include file = "header.jsp" %>
 		
 	<div class="jumbotron jumbotron-fluid">
@@ -59,11 +66,11 @@
 			    	<table class="table table-borderless">
 					    <tr>
 					      <th scope="col" class="first">Customer SSN Id</th>
-					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="ssnId" value="<%=request.getAttribute("ssn")%>" disabled></th>
+					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="ssnId" value="<%=request.getAttribute("ssn")%>" readonly="true"></th>
 					    </tr>
 					    <tr>
 					      <th scope="col" class="first">Customer Id</th>
-					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="customerId" value="<%=request.getAttribute("cId")%>" disabled></th>
+					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="customerId" value="<%=request.getAttribute("cId")%>" readonly="true"></th>
 					    </tr>
 					    <tr>
 					      <th scope="col" class="first">Old Customer Name</th>
@@ -96,8 +103,7 @@
 					    <tr>
 					    	<th colspan="2"><span style="color: red">(*)Fields are mandatory</span></th></tr>
 					    <tr>
-					      <th scope="col" class="first"><button type="submit" style="width: 100%" class="btn custom-button">Submit</button></th>
-					      <th scope="col"><button type="submit" style="width: 82%" class="btn custom-button">Reset</button></th>
+					      <th scope="col" colspan="2" class="first"><center><button type="submit" style="width: 40%" class="btn custom-button">Update</button></center></th>
 					    </tr> 
 					</table>
 				</form>

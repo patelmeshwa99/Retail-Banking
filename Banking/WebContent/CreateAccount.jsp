@@ -10,72 +10,95 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        <style>
-            body{
-                background-color: rgb(240, 240, 245);
-                text-align: center;
+<style>
+
+.table>tbody>tr>td,
+.table>tbody>tr>th {
+  border-top: none;
 }
-form {
-    display: inline-block;
+
+
+.first {
+	width: 45%;
 }
-table{
-    text-align: left;
-    
+
+
+@media only screen and (max-width: 995px) {
+  .top-navbar .navbar-nav .nav-link {
+  font-size: 75%;
+  }
+ 
+  h3 {
+  	font-size: 80%;
+  }
+  
+  
+  .first {
+  font-size: 80%;
+  }
+  
 }
-td{
-    padding: 10px;
+
+.custom-button{
+	background-color: black;
+	color: white;
 }
-select{
-    width: 100%;
-}
-  </style>
-  <script>
-      
-  </script>     
+
+</style>     
     </head>
     <body>
-    <%@ include file = "header.jsp" %>
-    <div class="jumbotron jumbotron-fluid">
- <div class="container">
- <div class="row">
+    
+    <%
+
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	if(session.getAttribute("username")==null){
+		response.sendRedirect("login.jsp");
+	}
+%>
+    
+    	<%@ include file = "header.jsp" %>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <div class="row">
 	    <div class="col-3"></div>
 	    <div class="col-6">
-    <center><h2><strong>Create Account</strong></h2></center>
-    
-    <form>
-<table>
-
-					<tr>
-				      <th scope="col" class="first">Customer Id: </th>
-				      <th scope="col"><input style="width: 100%" type="text" id="fname" name="fname" required></th>
+	    <center><h3 style="margin-top: -20px">Create Account</h3></center><br>
+	    	<form id="myForm" action="CreateAccountServlet" method="POST">
+		    	<table class="table table-borderless">
+				    <tr>
+				      <th scope="col" class="first">Customer Id: <span style="color:red">*</span></th>
+				      <th scope="col"><input style="width: 100%" type="text" id="cId" name="customerId" required></th>
 				    </tr>
-    <tr>
-    
+				    <tr>
+				      <th scope="col" class="first">Account type: <span style="color:red">*</span></th>
+				      <th scope="col">
+					      <select id="account" name="account">
+						    <option value="Current">Current</option>
+						    <option value="Savings">Savings</option>
+						  </select>
+					  </th>
+				    </tr>
+				    <tr>
+				      <th scope="col" class="first">Deposit Amount: <span style="color:red">*</span></th>
+				      <th scope="col"><input style="width: 100%" type="text" id="da" name="deposit_amount" required></th>
+				    </tr>
+				    <tr>
+				    	<th colspan="2"><span style="color: red">(*)Fields are mandatory</span></th>
+				    </tr>
+				    <tr>
+				    	<th></th>
+				    </tr>
+				    <tr>
+				      <th scope="col" colspan="2" class="first"><center><button type="submit" style="width: 40%" class="btn custom-button">Create</button></center></th>
+				    </tr> 
+				</table>
+			</form>
+	    </div>
+    	<div class="col-3"></div>
+  	</div>
+  </div>
+</div>
 
-        <td><label>Customer Id</label></td>
-        <td><input type="text" name="customerId" class="form-control"/></td>
-  
-</tr>
-<tr>
-
-<td><label>Account Type</label></td>
-<td><select name="accountType" class="form-control">
-        <option value="savings">Savings</option>
-        <option value="current">Current</option>
-      </select></td>
-
-</tr>
-
-<tr>
-    <td> <label>Deposit Amount</label></td>
-    <td><input type="text" name="depositAmount" class="form-control"></td>
-</tr>
-</table>
-        <input type="submit" style="background-color:black;color:yellow;margin: 0px" class="btn btn-default" value="Submit"/>
- </div></div>
-</form>
-        </div>
-        </div>
-        <%@ include file = "footer.jsp" %>
- </body>
+<%@ include file = "footer.jsp" %>
+</body>
 </html>

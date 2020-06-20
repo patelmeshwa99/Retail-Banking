@@ -40,13 +40,21 @@ li.nav-item
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
+<script src="js/validate.js"></script>
     </head>
     <body>
                 
+		<%
+
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	if(session.getAttribute("username")==null){
+		response.sendRedirect("login.jsp");
+	}
+%>
+		
         <%@ include file = "header.jsp" %>
         
-        	<div class="jumbotron jumbotron-fluid" style="height:75vh">
+        	<div class="jumbotron jumbotron-fluid">
 	  <div class="container">
 	    <div class="row">
 		    <div class="col-3"></div>
@@ -66,8 +74,8 @@ li.nav-item
 					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="customer_id" pattern="[0-9]{1,9}" placeholder="100******" required></th>
 					    </tr>
 					    <tr>
-					      <th scope="col" class="first"><button type="submit" style="width: 100%" class="btn custom-button">Submit</button></th>
-					      <th scope="col"><button type="submit" style="width: 82%" class="btn custom-button">Reset</button></th>
+					      <th scope="col" class="first"><button type="submit" name="update" style="width: 100%" class="btn custom-button">Update</button></th>
+					      <th scope="col"><button type="submit" style="width: 82%" name="delete" class="btn custom-button">Delete</button></th>
 					    </tr> 
 					</table>
 				</form>

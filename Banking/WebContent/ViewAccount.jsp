@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Transfer Money</title>
+        <title>View Account</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             .table>tbody>tr>th {
@@ -34,17 +34,27 @@ li.nav-item
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script>
+function depositMoney(){
+	const form = document.getElementById("myForm");
+	form.action = "DepositMoney.jsp";
+}
 
+function withdrawMoney(){
+	const form = document.getElementById("myForm");
+	form.action = "WithdrawMoney.jsp";
+}
+</script>
     </head>
     <body>
- 		<%
+		<%
 
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	if(session.getAttribute("username")==null){
 		response.sendRedirect("login.jsp");
 	}
 %>
- 		               
+		                
         <%@ include file = "header.jsp" %>
         
         	<div class="jumbotron jumbotron-fluid">
@@ -52,35 +62,28 @@ li.nav-item
 	    <div class="row">
 		    <div class="col-3"></div>
 		    <div class="col-6">
-		    <center><h3 style="margin-top: -20px">Transfer Money</h3></center><br>
-		    	<form action="DepositMoneyController" method="POST" id="myForm">
+		    <center><h3 style="margin-top: -20px">View Account</h3></center><br>
+		    	<form action="" method="POST" id="myForm">
 			    	<table class="table table-borderless">
 					    <tr>
-					      <th scope="col" class="first">Customer Id:</th><%HttpSession sess = request.getSession(); %>
-					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="cust_id" value="<%=sess.getAttribute("customerId")%>" readonly="true"></th>
+					      <th scope="col" class="first">Customer Id:</th>
+					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="cust_id" value="<%=request.getAttribute("cId")%>" readonly="true"></th>
+					      <% HttpSession sess = request.getSession(); sess.setAttribute("customerId", request.getAttribute("cId"));%>
 					    </tr>
 					    <tr>
-					      <th scope="col" class="first">Source Account Type: </th>
-					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="src_account_type" required></th>
+					      <th scope="col" class="first">Account Id: </th>
+					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="account_id" value="<%=request.getAttribute("aId")%>" readonly="true"></th>
+					      <% sess.setAttribute("accountId", request.getAttribute("aId"));%>
 					    </tr>
 					    <tr>
-					      <th scope="col" class="first">Target Account Type: </th>
-					      <th scope="col">
-					      	<select name="target" id="target">
-							    <option value="volvo">Volvo</option>
-							    <option value="saab">Saab</option>
-							    <option value="opel">Opel</option>
-							    <option value="audi">Audi</option>
-						  	</select>
-						  </th>
+					      <th scope="col" class="first">Account Type: </th>
+					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="account_type" value="<%=request.getAttribute("aType")%>" readonly="true"></th>
+					      <% sess.setAttribute("accountType", request.getAttribute("aType"));%>
 					    </tr>
 					    <tr>
-					      <th scope="col" class="first">Transfer Amount: </th>
-					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="trans_amount" required></th>
-					    </tr>
-					    <tr>
-					      <th scope="col" class="first">Deposit Amount: <span style="color:red">*</span></th>
-					      <th scope="col"><input style="width: 100%" type="number" id="fname" name="amount" required></th>
+					      <th scope="col" class="first">Account balance: </th>
+					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="account_bal" value="<%=request.getAttribute("balance")%>" readonly="true"></th>
+					      <% sess.setAttribute("aBalance", request.getAttribute("balance"));%>
 					    </tr>
 					    <tr>
 					      <th scope="col" class="first"><button type="submit" onclick="depositMoney()" name="deposit" style="width: 100%" class="btn custom-button">Deposit</button></th>

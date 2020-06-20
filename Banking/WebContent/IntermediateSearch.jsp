@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,15 +46,15 @@ jQuery(function ($) {
 </script>
     </head>
     <body>
-    
-    <%
+           
+       <%
 
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	if(session.getAttribute("username")==null){
 		response.sendRedirect("login.jsp");
 	}
 %>
-    
+           
                 
         <%@ include file = "header.jsp" %>
         
@@ -66,19 +67,21 @@ jQuery(function ($) {
 		    	<form action="SearchAccountServlet" method="POST">
 			    	<table class="table table-borderless">
 					    <tr>
-					      <th scope="col" class="first">Account Id: <span style="color:red">*</span></th>
-					      <th scope="col"><input style="width: 100%" type="text" id="fname" pattern="[0-9]{1,9}" placeholder="100******" name="account_id" required></th>
+					      <th scope="col" class="first">Customer Id: </th>
+					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="account_id" value="<%=request.getAttribute("customerId")%>" readonly="true"></th>
+					    </tr>
+					    <tr><% request.setAttribute("accIds", request.getAttribute("accIds")); %>
+					      <th scope="col" class="first">Account Id: <span style="color:red">*</span></th><%System.out.println("In intermediate"); %>
+					      <th scope="col"><select name="select_id">
+										    <c:forEach var="line" items="${accIds}">
+										        <option><c:out value="${line}"/></option>
+										    </c:forEach>
+ 										</select>
+						  </th>
 					    </tr>
 					    <tr>
-					    	<th colspan="2">OR</th>
-					    </tr>
-					    <tr>
-					      <th scope="col" class="first">Customer Id: <span style="color:red">*</span></th>
-					      <th scope="col"><input style="width: 100%" type="text" id="fname" name="customer_id" pattern="[0-9]{1,9}" placeholder="100******" required></th>
-					    </tr>
-					    <tr>
-					      <th scope="col" class="first"><button type="submit" name="view" style="width: 100%" class="btn custom-button">View</button></th>
-					      <th scope="col"><button type="submit" style="width: 82%" name="delete" class="btn custom-button">Delete</button></th>
+					      <th scope="col" class="first"><button type="submit" name="view2" style="width: 100%" class="btn custom-button">View</button></th>
+					      <th scope="col"><button type="submit" style="width: 82%" name="delete2" class="btn custom-button">Delete</button></th>
 					    </tr> 
 					</table>
 				</form>
