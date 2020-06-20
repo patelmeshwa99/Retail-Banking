@@ -51,6 +51,7 @@ function cancel(){
   
 </head>
 <body>
+<<<<<<< HEAD
 	<%
 
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -91,5 +92,38 @@ function cancel(){
 	
 	<%@ include file = "footer.jsp" %>
 
+=======
+<%@ include file = "header.jsp" %>
+	<div class="content">
+        <div class="heading">
+            <h4>Delect Account</h4>
+        </div>
+            <div class="inner_table">
+                <form action="delete" method="post">
+                <table>
+                    <tr>
+                        <td class="label">Account Id</td>
+                        <td class="box">      <input type="text" name="account_id" placeholder="100******">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            Account Type
+                        </td>
+                        <td class="box">     <input type="text" name="account_type" pattern="[A-Za-z]{1,}" placeholder="Current"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    
+                        <td class="button">
+                            
+                            <input class="btn" type="Submit" value="Delete">
+                        </td>
+                    </tr>
+                </table>
+                </form>   </div>
+        </div>
+<%@ include file = "footer.jsp" %>
+>>>>>>> 8eb99d115e25ae5fd24dfa9e236c5beffae6d0e1
 </body>
 </html>

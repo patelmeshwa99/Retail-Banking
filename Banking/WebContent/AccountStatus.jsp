@@ -13,6 +13,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script>
+function refreshPage(){
+    window.location.reload();
+} 
+</script>
 
         <title>Account Status</title>
       
@@ -40,7 +45,69 @@
             
     </head>
     <body>
+<<<<<<< HEAD
     <%
+=======
+	
+		<%@ include file = "header.jsp" %>
+        <div class="content">
+            <div class="heading">
+                <h4>Account Status</h4>
+            </div>
+            <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver" url = "jdbc:mysql://localhost/login"
+         user = "root"  password = ""/>
+             <sql:query dataSource = "${snapshot}" var = "result">
+         SELECT * from account;
+      </sql:query>
+            <div class="inner_table">
+                <table class="inner" border="1" cellspacing="0" cellpadding="1">
+                    <tr class="head">
+                        <th>Customer_Id</th>
+                        <th>Account_Id</th>
+                        <th>Account_Type</th>
+                        <th>Account_Status</th>
+                        <th>Message</th>
+                        <th>last Update</th>
+                        <th>Operation</th>
+                    </tr>
+                      <c:forEach var = "row" items = "${result.rows}">
+                    <tr>
+                        <td>
+                            <c:out value = "${row.customer_id}"/>
+                        </td>
+                        <td>
+                            <c:out value = "${row.account_id}"/>
+                        </td>
+                        <td>
+                           <c:out value = "${row.account_type}"/>
+                        </td>
+                        <td>
+                           <c:out value = "${row.account_status}"/>
+                        </td>
+                        <td>
+                            <c:out value = "${row.message}"/>
+                        </td>
+                        <td>
+                            <c:out value = "${row.last_update}"/>
+                        </td>
+                        <td>
+                                <button class="btn-link" onClick="refreshPage()" type="reset" value="Refresh The List">
+                                    <a href="#">Refresh</a>
+            </button>
+                        </td>
+                    </tr>
+                      </c:forEach>
+                </table>
+                    
+            </div>
+            <div class="btn1">
+            <button class="btn" onClick="refreshPage()" type="reset" value="Refresh The List">
+                Refresh the list
+            </button>
+            </div>
+        </div>
+<div class="container-fluid" style="height:7px; background-color: #F7E100"></div>
+>>>>>>> 8eb99d115e25ae5fd24dfa9e236c5beffae6d0e1
 
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	if(session.getAttribute("username")==null){
